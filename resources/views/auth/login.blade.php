@@ -57,12 +57,12 @@
                 </div>
 
                 <div class="input-block mb-3 text-center">
-                    <button class="btn btn-primary account-btn" type="submit">Login</button>
-                    @if (Route::has('password.request'))
+                    <button class="btn btn-dark account-btn" type="submit">Login</button>
+                    {{-- @if (Route::has('password.request'))
                         <a class="btn btn-link" href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}
                         </a>
-                    @endif
+                    @endif --}}
                 </div>
 
                 

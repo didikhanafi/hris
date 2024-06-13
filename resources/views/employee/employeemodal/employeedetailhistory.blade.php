@@ -22,7 +22,7 @@
             <tbody>
                 @foreach($history as $index=>$item)
                 <tr>
-                    <td>{{ $item->sort_date }}</td>
+                    <td>{{ date('d-M-Y',strtotime($item->sort_date)) }}</td>
                     <td>
                         @if($item instanceof App\Models\Mutation)
                             Mutasi

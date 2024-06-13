@@ -82,23 +82,24 @@
 						<div class="col-md-6 d-flex">
 							<div class="card card-table flex-fill">
 								<div class="card-header">
-									<h3 class="card-title mb-0">Pegawai Tetap</h3>
+									<h3 class="card-title mb-0">Karyawan Baru</h3>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
 										<table class="table table-nowrap custom-table mb-0">
 											<thead>
 												<tr>
-													<th>Name</th>
-													<th>Company</th>
-													<th>Date</th>
+													<th>Tanggal</th>
+													<th>Karyawan</th>
+													<th>Perusahaan</th>
 													{{-- <th>Paid Amount</th> --}}
 												</tr>
 											</thead>
 											<tbody>
 												@foreach($employeenew as $employee)
 													<tr>
-														<td>{{ $employee->tglmasuk }}</td>
+														<td>{{ date('d-M-Y',strtotime($employee->tglmasuk)) }}</td>
+														{{-- <td>{{ date('d-M-Y',strtotime($employee->tglahir)) }}</td> --}}
 														<td>{{ $employee->employee }}</td>
 														<td>{{ $employee->companies }}</td>
 													</tr>
@@ -115,25 +116,38 @@
 						<div class="col-md-6 d-flex">
 							<div class="card card-table flex-fill">
 								<div class="card-header">
-									<h3 class="card-title mb-0">Pegawai Akan Habis Kontrak</h3>
+									<h3 class="card-title mb-0">Kontak Akan Berakhir</h3>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">	
 										<table class="table custom-table table-nowrap mb-0">
 											<thead>
 												<tr>
-													<th>Expire Date</th>
-													<th>Name</th>
-													<th>Company</th>
+													<th>Tgl Masuk</th>
+													<th>Tgl Akhir</th>
+													<th>Karyawan</th>
+													<th>Perusahaan</th>
 													{{-- <th>Paid Amount</th> --}}
 												</tr>
 											</thead>
 											<tbody>
-												@foreach($employeeexpired as $employee)
+												@forelse ($employees as $itememployee)
 												<tr>
-													<td>{{ $employee->tglawal }}</td>
+													@foreach($itememployee->mutations as $mutation)
+														@if($mutation->tglakhir >= \Carbon\Carbon::today() && $mutation->tglakhir <= \Carbon\Carbon::today()->addMonth())
+															
+																<td>{{ date('d-M-Y',strtotime($mutation->tglawal)) }}</td>
+																<td>{{ date('d-M-Y',strtotime($mutation->tglakhir)) }}</td>
+																<td>{{ $itememployee->employee }}</td>
+																<td>{{ $itememployee->companies->companies }}</td>
+																{{-- <td>{{ $itememployee->positions->position }}</td> --}}
+														@endif
+													@endforeach
+													{{-- <td>
+														{{ date('d-M-Y',strtotime($employee->tglmasuk)) }}</td>
+													<td>{{ date('d-M-Y',strtotime($employee->mutations)) }}</td>
 													<td>{{ $employee->employee }}</td>
-													<td>{{ $employee->companies }}</td>
+													<td>{{ $employee->companies->companies }}</td> --}}
 												</tr>
 												@endforeach
 											</tbody>

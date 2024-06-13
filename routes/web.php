@@ -28,6 +28,7 @@ use App\Http\Controllers\StatusKaryawanController;
 use App\Http\Controllers\SuratPeringatanController;
 use App\Http\Controllers\SuratPKController;
 use App\Models\MasterPendidikan;
+use App\Models\SettingModel;
 use App\Models\StatusKaryawan;
 use App\Models\SuratPeringatan;
 use App\Models\SuratPK;
@@ -46,7 +47,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $settingweb = SettingModel::first();
+    return view('welcome',[
+        'settingwebcom'=>$settingweb,
+        // 'slide'=>'importmutation',
+        // 'title'=>'Import Mutation',
+    ]);
 });
 
 Auth::routes();
@@ -82,6 +88,7 @@ Route::resource('/employeescontexpired', EmployeeKontrakBerakhirController::clas
 //Employee Mutation
 Route::resource('/mutation', MutationController::class)->middleware('auth');
 Route::resource('/setting', SettingController::class)->middleware('auth');
+Route::post('import-mutations', [MutationImportController::class, 'import'])->name('mutations.import');
 
 //Report Employee
 Route::resource('/reportemployee', ReportEmployeeController::class)->middleware('auth');

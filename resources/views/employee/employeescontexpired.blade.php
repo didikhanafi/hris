@@ -17,9 +17,6 @@
                         <li class="breadcrumb-item active">{{ $title }}</li>
                     </ul>
                 </div>
-                <div class="col-auto float-end ms-auto">
-                    <a href="#" class="btn add-btn" data-bs-toggle="modal" data-bs-target="#add_employee"><i class="fa-solid fa-plus"></i> Add {{ $title }}</a>
-                </div>
             </div>
         </div>
         <!-- /Page Header -->
@@ -99,8 +96,8 @@
                                         @if($mutation->tglakhir >= \Carbon\Carbon::today() && $mutation->tglakhir <= \Carbon\Carbon::today()->addMonth())
                                             
                                                 <td>{{ $mutation->mutation_ke }}</td>
-                                                <td>{{ $mutation->tglawal }}</td>
-                                                <td>{{ $mutation->tglakhir }}</td>
+                                                <td>{{ date('d-M-Y',strtotime($mutation->tglawal)) }}</td>
+                                                <td>{{ date('d-M-Y',strtotime($mutation->tglakhir)) }}</td>
                                                 <td>{{ $itememployee->companies->companies }}</td>
                                                 <td>{{ $itememployee->positions->position }}</td>
                                         @endif

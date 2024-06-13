@@ -92,7 +92,7 @@
                                                         </td>
                                                         <td>{{ $itememployee->employeecode }}</td>
                                                         <td>{{ $itememployee->phone }}</td>
-                                                        <td>{{ date('d M Y',strtotime($itememployee->tglmasuk)) }}</td>
+                                                        <td>{{ date('d-M-Y',strtotime($itememployee->tglmasuk)) }}</td>
                                                         <td>{{ optional($itememployee->companies)->companies ?? '-' }}</td>
                                                         <td>{{ optional($itememployee->positions)->position ?? '-' }}</td>
                                                         
@@ -215,7 +215,7 @@
                                                         </td>
                                                         <td>{{ $itememployee->employeecode }}</td>
                                                         <td>{{ $itememployee->phone }}</td>
-                                                        <td>{{ date('d M Y',strtotime($itememployee->tglmasuk)) }}</td>
+                                                        <td>{{ date('d-M-Y',strtotime($itememployee->tglmasuk)) }}</td>
                                                         <td>{{ optional($itememployee->companies)->companies ?? '-' }}</td>
                                                         <td>{{ optional($itememployee->positions)->position ?? '-' }}</td>
                                                         
@@ -338,7 +338,7 @@
                                                         </td>
                                                         <td>{{ $itememployee->employeecode }}</td>
                                                         <td>{{ $itememployee->phone }}</td>
-                                                        <td>{{ date('d M Y',strtotime($itememployee->tglmasuk)) }}</td>
+                                                        <td>{{ date('d-M-Y',strtotime($itememployee->tglmasuk)) }}</td>
                                                         <td>{{ optional($itememployee->companies)->companies ?? '-' }}</td>
                                                         <td>{{ optional($itememployee->positions)->position ?? '-' }}</td>
                                                         
@@ -461,7 +461,7 @@
                                                         </td>
                                                         <td>{{ $itememployee->employeecode }}</td>
                                                         <td>{{ $itememployee->phone }}</td>
-                                                        <td>{{ date('d M Y',strtotime($itememployee->tglmasuk)) }}</td>
+                                                        <td>{{ date('d-M-Y',strtotime($itememployee->tglmasuk)) }}</td>
                                                         <td>{{ optional($itememployee->companies)->companies ?? '-' }}</td>
                                                         <td>{{ optional($itememployee->positions)->position ?? '-' }}</td>
                                                         

@@ -11,7 +11,11 @@
         </div>
     </div>
     <div class="table-responsive table-newdatatable">                     
-
+        @if(session('success'))
+            <div>
+                {{ session('success') }}
+            </div>
+        @endif
         <table class="table table-new custom-table mb-0 datatable">
             <thead>
                 <tr>
@@ -31,8 +35,8 @@
                     @if (!is_null($mutation->tglawal) && !is_null($mutation->tglakhir))
                         <td>{{ $index+1 }}</td>
                         <td>{{ $mutation->mutation_ke }}</td>
-                        <td>{{ $mutation->tglawal }}</td>
-                        <td>{{ $mutation->tglakhir }}</td>
+                        <td>{{ date('d-M-Y',strtotime($mutation->tglawal)) }}</td>
+                        <td>{{ date('d-M-Y',strtotime($mutation->tglakhir)) }}</td>
                         <td>{{$mutation->branches->branches ?? '' }} ({{$mutation->companies->companies ?? '' }})</td>
                         <td>{{$mutation->positions->position ?? '' }} ({{$mutation->departements->departements ?? '' }})</td>
                         <td class="text-end">
@@ -291,4 +295,39 @@
         </div>
     </div>
     <!-- /Add Mutation Modal -->
+
+    <!-- Add Import Modal -->
+    <div id="add_import" class="modal custom-modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Import File Mutasi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+
+
+                    <form action="{{ route('mutations.import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">    
+                            <input type="hidden" name="employee_id" value="{{$dataemployees->id}}">
+                            <div class="col-sm-12">
+                                <div class="input-block mb-3">
+                                    <label class="col-form-label">Pilih File Excel <span class="text-danger">*</span></label>
+                                    <input class="form-control" name="file" type="file">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submit-section">
+                            <button class="btn btn-primary submit-btn" type="submit">Import</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Add Import Modal -->
 </div>

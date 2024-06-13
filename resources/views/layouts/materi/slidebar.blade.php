@@ -109,6 +109,18 @@
                         {{-- <li><a href="/employeesdetail">profile</a></li> --}}
                     </ul>
                 </li>
+                <li class="submenu">
+                    <a href="#"><i class="la la-users"></i> <span>Mutations</span> <span class="menu-arrow"></span></a>
+                    <ul>
+                        @php
+                            if($slide=='reportemployee'){
+                                echo '<li><a href="/import-mutations class="active">Import File Mutasi</a></li>';
+                            }else{
+                                echo '<li><a href="/import-mutations">Import File Mutasi</a></li>';
+                            }
+                        @endphp
+                    </ul>
+                </li>
                 {{-- <li class="submenu">
                     <a href="#"><i class="la la-pie-chart"></i> <span>Reports</span> <span class="menu-arrow"></span></a>
                     <ul>
