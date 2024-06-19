@@ -18,15 +18,37 @@
                             @php
                                 if($slide=='setting'){
                                     echo   '<li class="active"> 
-                                                <a href="theme-settings.html"><i class="la la-photo"></i> <span>Website Settings</span></a>
+                                                <a href="/setting"><i class="la la-photo"></i> <span>Website Settings</span></a>
                                             </li>';
                                 }else{
                                     echo   '<li> 
-                                                <a href="theme-settings.html"><i class="la la-photo"></i> <span>Website Settings</span></a>
+                                                <a href="/setting"><i class="la la-photo"></i> <span>Website Settings</span></a>
                                             </li>';
                                 }
                             @endphp
-							
+
+                            @php
+                                if($slide=='formatcetak'){
+                                    echo   '<li class="active"> 
+                                                <a href="/formatcetak"><i class="la la-photo"></i> <span>Format Cetak</span></a>
+                                            </li>';
+                                }else{
+                                    echo   '<li> 
+                                                <a href="/formatcetak"><i class="la la-photo"></i> <span>Format Cetak</span></a>
+                                            </li>';
+                                }
+                            @endphp                            
+                            @php
+                            if($slide=='formatspk'){
+                                echo   '<li class="active"> 
+                                            <a href="/formatspk"><i class="la la-photo"></i> <span>Format SPK</span></a>
+                                        </li>';
+                            }else{
+                                echo   '<li> 
+                                            <a href="/formatspk"><i class="la la-photo"></i> <span>Format SPK</span></a>
+                                        </li>';
+                            }
+                        @endphp  							
 							{{-- <li> 
 								<a href="change-password.html"><i class="la la-lock"></i> <span>Change Password</span></a>
 							</li> --}}

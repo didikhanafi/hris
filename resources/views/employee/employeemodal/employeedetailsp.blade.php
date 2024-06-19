@@ -32,7 +32,7 @@
                             <div class="dropdown dropdown-action">
                                 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#view_employee{{$itemsuratperingatan->id}}"><i class="fa-solid fa-eye m-r-5"></i>View</a>
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#view_employee{{$itemsuratperingatan->id}}"><i class="fa-solid fa-eye m-r-5"></i>Print</a>
                                     <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_employee{{$itemsuratperingatan->id}}"><i class="fa-solid fa-pencil m-r-5"></i> Edit</a>
                                     <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_employee{{$itemsuratperingatan->id}}"><i class="fa-regular fa-trash-can m-r-5"></i> Delete</a>
                                 </div>
