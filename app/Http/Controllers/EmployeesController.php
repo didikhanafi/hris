@@ -25,24 +25,24 @@ class EmployeesController extends Controller
     {
         $searchName = $request->input('search_name');
         $searchCompany = $request->input('search_company');
-    
+
         // Query with relationships
         $query = Employees::with('companies', 'mutations', 'branches', 'positions', 'religions', 'statusnikahs');
-    
+
         // Apply filters based on provided input
         if ($searchName) {
             $query->where('employee', 'like', '%' . $searchName . '%');
         }
-    
+
         if ($searchCompany) {
             $query->whereHas('companies', function($q) use ($searchCompany) {
                 $q->where('companiescode', 'like', '%' . $searchCompany . '%');
             });
         }
-    
+
         // Get the filtered data
         $employees = $query->get();
-    
+
         // Additional data for the view
         $lastId = Employees::latest('id')->value('id');
         $nextId = $lastId ? $lastId + 1 : 1;
@@ -56,7 +56,7 @@ class EmployeesController extends Controller
         $dataposition = Position::all();
         $databranches = Branches::all();
         $datamutation = Mutation::all();
-    
+
         $settingweb = SettingModel::first();
         return view('employee.employees', [
             'settingwebcom'=>$settingweb,
@@ -77,9 +77,9 @@ class EmployeesController extends Controller
             'search_company' => $searchCompany
         ]);
     }
-    
-    
-    
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -101,7 +101,7 @@ class EmployeesController extends Controller
             'uploademployee' => 'image|mimes:jpeg,png,jpg|max:2048',
             'uploadktp' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
-        
+
         if ($request->hasFile('uploademployee')) {
             $uploademployee = $request->file('uploademployee')->store('uploademployee', 'public');
         }else{
@@ -214,10 +214,10 @@ class EmployeesController extends Controller
             'uploadktp' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        
+
         $karyawan = Employees::findOrFail($id);
 
-        
+
         // dd($request);
         if ($request->hasFile('uploademployee')) {
             if ($karyawan->uploademployee) {
@@ -235,18 +235,18 @@ class EmployeesController extends Controller
             $karyawan->uploadktp = $uploadktp;
         }
         // dd($karyawan);
-        
+
         if($request->emoloyeestatus=='on'){
             $status=1;
         }else{
             $status=0;
         }
-        
+
         $tgllahir=date('Y-m-d',strtotime($request->tgllahir));
         $spousetgllahir=date('Y-m-d',strtotime($request->spousetgllahir));
         $tglmasuk=date('Y-m-d',strtotime($request->tglmasuk));
         $tglkeluar=date('Y-m-d',strtotime($request->tglkeluar));
-        $karyawan->update([   
+        $karyawan->update([
             'company_id'   => $request->company_id,
             'departements_id'   => $request->departements,
             'branches_id'   => $request->branches,
@@ -288,7 +288,7 @@ class EmployeesController extends Controller
             'bankname'   => $request->bankname,
             'bankacc'   => $request->bankacc,
         ]);
-        // Mutation::where('id',$id)->update([            
+        // Mutation::where('id',$id)->update([
         //     'employee_id'   => $request->employee_id,
         //     'companies_id'   => $request->company_id,
         //     'departement_id'   => $request->departements,
@@ -296,7 +296,7 @@ class EmployeesController extends Controller
         //     'position'   => $request->position,
         //     'tglawal'   => $tglmasuk,
         // ]);
-        
+
         return redirect('/employees')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
@@ -314,7 +314,7 @@ class EmployeesController extends Controller
         if ($karyawan->ktp) {
             Storage::delete($karyawan->uploadktp);
         }
-        
+
         $karyawan->delete();
         return redirect('/employees');
     }

@@ -4,15 +4,12 @@
 
     <!-- Main Wrapper -->
     <div class="main-wrapper">
-    
-        
-        
         <!-- Page Wrapper -->
         <div class="page-wrapper">
-        
+
             <!-- Page Content -->
             <div class="content container-fluid">
-            
+
                 <!-- Page Header -->
                 <div class="page-header">
                     <div class="row align-items-center">
@@ -29,7 +26,7 @@
                     </div>
                 </div>
                 <!-- /Page Header -->
-                
+
                 <div class="row">
                     <div class="col-md-12">
                         <div>
@@ -37,7 +34,10 @@
                                 <thead>
                                     <tr>
                                         {{-- <th class="width-thirty text-center">#</th> --}}
+                                        <th>Code</th>
                                         <th>Company Name</th>
+                                        <th>Logo</th>
+                                        <th>Banner</th>
                                         <th class="width-thirty text-center">Status</th>
                                         <th class="width-thirty text-end">Action</th>
                                     </tr>
@@ -46,8 +46,22 @@
                                     @foreach ($datacompanies as $itemcompanies)
                                     <tr>
                                         {{-- <td>{{$itemcompanies->index}}</td> --}}
-                                        {{-- <td>{{$itemcompanies->companiescode}}</td> --}}
-                                        <td>{{$itemcompanies->companies}} ({{$itemcompanies->companiescode}})</td>
+                                        <td>{{$itemcompanies->companiescode}}</td>
+                                        <td>{{$itemcompanies->companies}} <br>{{$itemcompanies->alamat}}</td>
+                                        <td>
+                                            @if ($itemcompanies->logo!="")
+                                                <img src="{{ asset('storage/' . $itemcompanies->logo) }}" width="50" alt="{{$itemcompanies->companies}}">
+                                            @else
+                                                <img width="50" src="{{ asset('storage/noimage.png') }}"
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($itemcompanies->banner!="")
+                                                <img src="{{ asset('storage/' . $itemcompanies->banner) }}" width="150" alt="{{$itemcompanies->companies}}">
+                                            @else
+                                                <img width="150" src="{{ asset('storage/noimage.png') }}"
+                                            @endif
+                                        </td>
                                         <td  class="text-center">
                                             @php
                                                 if($itemcompanies->status==true){
@@ -68,7 +82,7 @@
                                         </td>
                                     </tr>
 
-                                        
+
                                         <!-- Edit Companies Modal -->
                                         <div id="edit_companies{{$itemcompanies->id}}" class="modal custom-modal fade" role="dialog">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -92,10 +106,32 @@
                                                                 <input class="form-control" name="companies" value="{{$itemcompanies->companies}}" type="text">
                                                             </div>
                                                             <div class="input-block mb-3">
+                                                                <label class="col-form-label">Alamat <span class="text-danger">*</span></label>
+                                                                <input class="form-control" name="alamat" value="{{$itemcompanies->alamat}}" type="text">
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="input-block mb-3">
+                                                                    <label class="col-form-label">Upload Logo <span class="text-danger">*</span></label>
+                                                                    @if($itemcompanies->logo)
+                                                                        <img src="{{ asset('storage/' . $itemcompanies->logo) }}" width="100" alt="Company Logo">
+                                                                    @endif
+                                                                    <input class="form-control" name="logo" type="file">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="input-block mb-3">
+                                                                    <label class="col-form-label">Upload Identitas <span class="text-danger">*</span></label>
+                                                                    @if($itemcompanies->banner)
+                                                                        <img src="{{ asset('storage/' . $itemcompanies->banner) }}" width="100" alt="Company Banner">
+                                                                    @endif
+                                                                    <input class="form-control" name="banner" type="file">
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-block mb-3">
                                                                 <label class="col-form-label">Status <span class="text-danger">*</span></label>
                                                                 <div class="checkbox">
                                                                     <label class="col-form-label">
-                                                                        <input type="checkbox" name="status" 
+                                                                        <input type="checkbox" name="status"
                                                                         @php
                                                                             if($itemcompanies->status=="1"){
                                                                                 echo "checked";
@@ -144,7 +180,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- /Delete Companies Modal -->    
+                                        <!-- /Delete Companies Modal -->
 
                                     @endforeach
                                 </tbody>
@@ -154,7 +190,7 @@
                 </div>
             </div>
             <!-- /Page Content -->
-            
+
             <!-- Add Companies Modal -->
             <div id="add_companies" class="modal custom-modal fade" role="dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -174,7 +210,29 @@
                                 </div>
                                 <div class="input-block mb-3">
                                     <label class="col-form-label">Companies Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" name="companies" type="text">
+                                    <input class="form-control" name="companies"  type="text">
+                                </div>
+                                <div class="input-block mb-3">
+                                    <label class="col-form-label">Alamat <span class="text-danger">*</span></label>
+                                    <input class="form-control" name="alamat" type="text">
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="input-block mb-3">
+                                        <label class="col-form-label">Upload Logo <span class="text-danger">*</span></label>
+                                        {{-- @if($dataemployees->uploadktp)
+                                            <img src="{{ asset('storage/' . $dataemployees->uploadktp) }}" width="100" alt="Identitas Karyawan">
+                                        @endif --}}
+                                        <input class="form-control" name="logo" type="file">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="input-block mb-3">
+                                        <label class="col-form-label">Upload Banner <span class="text-danger">*</span></label>
+                                        {{-- @if($dataemployees->uploadktp)
+                                            <img src="{{ asset('storage/' . $dataemployees->uploadktp) }}" width="100" alt="Identitas Karyawan">
+                                        @endif --}}
+                                        <input class="form-control" name="banner" type="file">
+                                    </div>
                                 </div>
                                 {{-- <div class="input-block mb-3">
                                     <label class="col-form-label">Note <span class="text-danger">*</span></label>
@@ -198,23 +256,23 @@
             </div>
             <!-- /Add Companies Modal -->
 
-            
+
         </div>
         <!-- /Page Wrapper -->
 
     </div>
     <!-- /Main Wrapper -->
-	
+
     {{-- <script>
         //message with toastr
         @if(session()->has('success'))
-        
-            toastr.success('{{ session('success') }}', 'BERHASIL!'); 
+
+            toastr.success('{{ session('success') }}', 'BERHASIL!');
 
         @elseif(session()->has('error'))
 
-            toastr.error('{{ session('error') }}', 'GAGAL!'); 
-            
+            toastr.error('{{ session('error') }}', 'GAGAL!');
+
         @endif
     </script> --}}
 @endsection

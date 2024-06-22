@@ -24,7 +24,9 @@ use App\Http\Controllers\MutationImportController;
 use App\Http\Controllers\ReportEmployeeController;
 use App\Http\Controllers\SalaryContorller;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SettingKopSuratController;
 use App\Http\Controllers\StatusKaryawanController;
+use App\Http\Controllers\SuratPeringatanCetakController;
 use App\Http\Controllers\SuratPeringatanController;
 use App\Http\Controllers\SuratPKController;
 use App\Models\MasterPendidikan;
@@ -88,7 +90,9 @@ Route::resource('/employeescontexpired', EmployeeKontrakBerakhirController::clas
 //Employee Mutation
 Route::resource('/mutation', MutationController::class)->middleware('auth');
 Route::resource('/setting', SettingController::class)->middleware('auth');
+Route::resource('/settingkop', SettingKopSuratController::class)->middleware('auth');
 Route::post('import-mutations', [MutationImportController::class, 'import'])->name('mutations.import');
+Route::resource('/suratperingatancetak', SuratPeringatanCetakController::class)->middleware('auth');
 
 //Report Employee
 Route::resource('/reportemployee', ReportEmployeeController::class)->middleware('auth');
@@ -110,10 +114,10 @@ Route::get('/route-cache', function() {
 Route::get('/config-cache', function() {
  	Artisan::call('config:cache');
  	return 'Config cache has been cleared';
-}); 
+});
 
 // Clear view cache:
 Route::get('/view-clear', function() {
     Artisan::call('view:clear');
     return 'View cache has been cleared';
-});   
+});

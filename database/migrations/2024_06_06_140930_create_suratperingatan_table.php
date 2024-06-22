@@ -14,9 +14,26 @@ return new class extends Migration
         Schema::create('suratperingatan', function (Blueprint $table) {
             $table->id();
             $table->string('employee_id');
+            $table->string('companies_id');
+            $table->string('position_id');
             $table->string('suratperingatan');
+            $table->string('spke');
+            $table->string('tglawalsp');
+            $table->string('tglakhirsp');
+            $table->string('keterangansp')->nullable();
+            $table->string('tempatsp');
             $table->string('tglsp');
-            $table->string('keterangansp');
+            $table->string('syaratsp1')->nullable();
+            $table->string('syaratsp2')->nullable();
+            $table->string('syaratsp3')->nullable();
+            $table->string('atasanlgs')->nullable();
+            $table->string('atasanlgsposition')->nullable();
+            $table->string('mengetahui')->nullable();
+            $table->string('mengetahuiposition')->nullable();
+            $table->string('kuasahukum')->nullable();
+            $table->string('arsip')->nullable();
+
+
             $table->timestamps();
         });
     }

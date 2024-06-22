@@ -27,7 +27,7 @@ class SuratPeringatanController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {        
+    {
         // dd($request);
         $request->validate([
             'suratperingatan'=> 'required',
@@ -35,12 +35,29 @@ class SuratPeringatanController extends Controller
             'keterangansp'=> 'required',
         ]);
         $tglsp=date('Y-m-d',strtotime($request->tglsp));
-        
+        $tglawalsp=date('Y-m-d',strtotime($request->tglawalsp));
+        $tglakhirsp=date('Y-m-d',strtotime($request->tglakhirsp));
+        // dd($request);
         SuratPeringatan::create([
             'employee_id'   => $request->employee_id,
+            'companies_id'   => $request->companies_id,
+            'position_id'   => $request->position_id,
             'suratperingatan'   => $request->suratperingatan,
+            'spke'   => $request->spke,
+            'tglawalsp'   => $tglawalsp,
+            'tglakhirsp'   => $tglakhirsp,
             'keterangansp'   => $request->keterangansp,
+            'tempatsp'   => $request->tempatsp,
             'tglsp'   => $tglsp,
+            'syaratsp1'   => $request->syaratsp1,
+            'syaratsp2'   => $request->syaratsp2,
+            'syaratsp3'   => $request->syaratsp3,
+            'atasanlgs'   => $request->atasanlgs,
+            'atasanlgsposition'   => $request->atasanlgsposition,
+            'mengetahui'   => $request->mengetahui,
+            'mengetahuiposition'   => $request->mengetahuiposition,
+            'kuasahukum'   => $request->kuasahukum,
+            'arsip'   => $request->arsip,
         ]);
 
         //redirect to index
@@ -77,7 +94,7 @@ class SuratPeringatanController extends Controller
 
         $tglsp=date('Y-m-d',strtotime($request->tglsp));
         $suratperingatan = SuratPeringatan::findOrFail($id);
-        
+
         $suratperingatan->update([
             'employee_id'   => $request->employee_id,
             'suratperingatan'   => $request->suratperingatan,

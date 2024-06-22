@@ -1,12 +1,12 @@
 @extends('layouts.appmain')
 
-@section('content')			
+@section('content')
     <!-- Page Wrapper -->
     <div class="page-wrapper">
-    
+
         <!-- Page Content -->
         <div class="content container-fluid">
-        
+
 
             <!-- Page Header -->
             <div class="page-header">
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <!-- /Page Header -->
-            
+
             <div class="card mb-0">
                 <div class="card-body">
                     <div class="row">
@@ -37,7 +37,7 @@
                                             @if ($dataemployees->uploademployee!="")
                                                 <img src="{{ asset('storage/' . $dataemployees->uploademployee) }}" alt="{{$dataemployees->employee}}">
                                             @else
-                                                <img src="{{ asset('storage/noimage.png') }}" 															
+                                                <img src="{{ asset('storage/noimage.png') }}"
                                             @endif
                                         </a>
                                     </div>
@@ -50,16 +50,16 @@
                                                 <h6 class="text-muted">{{$dataemployees->companies->companies}}</h6>
                                                 <small class="text-muted">{{$dataemployees->positions->position}} | {{$dataemployees->positions->position}}</small>
                                                 <div class="staff-id">Employee ID : {{$dataemployees->employeecode}}</div>
-                                                <div class="small doj text-muted">Date of Join : {{date('d-M-Y', strtotime($dataemployees->tglmasuk));}} </div>   
-                                                
+                                                <div class="small doj text-muted">Date of Join : {{date('d-M-Y', strtotime($dataemployees->tglmasuk));}} </div>
+
 
                                                 @if ($dataemployees->statuskontrak=='kontrak')
                                                     <div class="small doj text-muted">
-                                                        Status Karyawan : {{$dataemployees->statuskontrak}} 
+                                                        Status Karyawan : {{$dataemployees->statuskontrak}}
                                                         <a href="#">(Update Status)</a>
-                                                    </div>                                                    
+                                                    </div>
                                                 @else
-                                                    <div class="small doj text-muted">Status Karyawan : {{$dataemployees->statuskontrak}} {{date('d-M-Y', strtotime($dataemployees->tglmasuk));}} </div>                                                    
+                                                    <div class="small doj text-muted">Status Karyawan : {{$dataemployees->statuskontrak}} {{date('d-M-Y', strtotime($dataemployees->tglmasuk));}} </div>
                                                 @endif
 
 
@@ -71,7 +71,7 @@
                                                 @else
                                                     <div class="mt-2 dropdown action-label">
                                                         <a href="#" class="btn btn-white btn-sm btn-rounded"><i class="fa-regular fa-circle-dot text-danger"></i> Resign </a>
-                                                        
+
                                                     </div>
                                                 @endif
 
@@ -114,7 +114,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="card tab-box">
                 <div class="row user-tabs">
                     <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
@@ -131,9 +131,9 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="tab-content">
-            
+
                 <!-- Profile Info Tab -->
                 <div id="emp_profile" class="pro-overview tab-pane fade show active">
                     <div class="row">
@@ -261,9 +261,9 @@
                                     <h3 class="card-title">Foto Identitas</h3>
                                     <div>
                                         @if ($dataemployees->uploadktp!="")
-                                        <img src="{{ asset('storage/' . $dataemployees->uploadktp) }}" 
+                                        <img src="{{ asset('storage/' . $dataemployees->uploadktp) }}"
                                         @else
-                                        <img src="{{ asset('storage/noimage.png') }}" 															
+                                        <img src="{{ asset('storage/noimage.png') }}"
                                         @endif
                                         alt="User Image">
                                     </div>
@@ -273,19 +273,19 @@
                     </div>
                 </div>
                 <!-- /Profile Info Tab -->
-                
+
                 <!-- Projects Tab -->
                 @include('employee.employeemodal.employeedetailhistory')
                 <!-- /Projects Tab -->
 
                 <!-- SPK Tab -->
                 @include('employee.employeemodal.employeedetailspk')
-                <!-- /SPK Tab -->                
-                
+                <!-- /SPK Tab -->
+
                 <!-- Salary Tab -->
                 @include('employee.employeemodal.employeedetailsalary')
                 <!-- /Salary Tab -->
-                
+
                 <!-- Surat Peringatan -->
                 @include('employee.employeemodal.employeedetailsp')
                 <!-- /Surat Peringatan -->
@@ -294,16 +294,16 @@
 
                 @include('employee.employeemodal.employeedetailloan')
                 <!-- /loan -->
-                
-                
+
+
                 <!-- Mutation -->
                 @include('employee.employeemodal.employeedetailmutation')
                 <!-- /Mutation -->
-                
+
             </div>
         </div>
         <!-- /Page Content -->
-        
+
         <!-- Profile Modal -->
         <div id="profile_info" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -314,7 +314,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">        
+                    <div class="modal-body">
                         {{-- <form action="{{ route('employees.update', $dataemployees->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT') --}}
@@ -327,7 +327,7 @@
                                         @if ($dataemployees->uploademployee!="")
                                             <img class="inline-block" src="{{ asset('storage/' . $dataemployees->uploademployee) }}" alt="{{$dataemployees->employee}}">
                                         @else
-                                            <img class="inline-block"  src="{{ asset('storage/noimage.png')}}"> 															
+                                            <img class="inline-block"  src="{{ asset('storage/noimage.png')}}">
                                         @endif
                                         {{-- <img class="inline-block" src="{{ asset('storage/' . $dataemployees->uploademployee) }}" alt="{{$dataemployees->employee}}">  --}}
                                         <div class="fileupload btn">
@@ -339,7 +339,7 @@
                             </div>
 
                             <input type="hidden" name="tabakses" value="mainprofile" >
-                            <div class="row">                                   
+                            <div class="row">
                                 <div class="col-sm-6">
                                     <div class="input-block mb-3">
                                         <label class="col-form-label">Perusahaan (PT)</label>
@@ -348,8 +348,8 @@
                                                 <option value="{{$itemcompany->id}}"
                                                 @if ($itemcompany->id==$dataemployees->company_id)
                                                     @selected(true)
-                                                @endif	
-                                                >{{$itemcompany->companies}}</option>                                        
+                                                @endif
+                                                >{{$itemcompany->companies}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -359,11 +359,11 @@
                                         <label class="col-form-label">Cabang</label>
                                         <select class="select" name="branches"
                                             @foreach ($databranches as $itembranches)
-                                             
+
                                                 @if ($itembranches->id==$dataemployees->branches_id)
-                                                    <option value="{{$itembranches->id}}" selected>{{$itembranches->branches}}</option>                                        
+                                                    <option value="{{$itembranches->id}}" selected>{{$itembranches->branches}}</option>
                                                 @else
-                                                    <option value="{{$itembranches->id}}">{{$itembranches->branches}}</option>                                        
+                                                    <option value="{{$itembranches->id}}">{{$itembranches->branches}}</option>
                                                 @endif
                                             @endforeach
                                         </select>
@@ -371,13 +371,16 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="input-block mb-3">
-                                        <label class="col-form-label">Departemen</label>
-                                        <select class="select" name="departement">
+                                        <label class="col-form-label">Departement</label>
+                                        <select class="select" name="departements">
                                             @foreach ($datadepartement as $itemdepartement)
-                                            @if ($itemdepartement->id==$dataemployees->departement_id)
-                                                @selected(true)
-                                            @endif	
-                                                <option value="{{$itemdepartement->departementscode}}">{{$itemdepartement->departements}}</option>                                        
+
+                                                @if ($itemdepartement->id==$dataemployees->departements_id)
+                                                    <option value="{{$itemdepartement->id}}" selected>{{$itemdepartement->departements}}</option>
+                                                @else
+                                                    <option value="{{$itemdepartement->id}}">{{$itemdepartement->departements}}</option>
+                                                @endif
+
                                             @endforeach
                                         </select>
                                     </div>
@@ -387,13 +390,13 @@
                                         <label class="col-form-label">Jabatan</label>
                                         <select class="select" name="position">
                                             @foreach ($dataposition as $itemposition)
-                                                
-                                                @if ($itemposition->id==$dataemployees->id)
+
+                                                @if ($itemposition->id==$dataemployees->position)
                                                     <option value="{{$itemposition->id}}" selected>{{$itemposition->position}}</option>
                                                 @else
                                                     <option value="{{$itemposition->id}}">{{$itemposition->position}}</option>
                                                 @endif
-                                                                                        
+
                                             @endforeach
                                         </select>
                                     </div>
@@ -409,7 +412,7 @@
                                         <label class="col-form-label">Nama Karyawan <span class="text-danger">*</span></label>
                                         <input class="form-control" name="employee" value="{{$dataemployees->employee}}" type="text">
                                     </div>
-                                </div>                                       
+                                </div>
                                 <div class="col-sm-6">
                                     <div class="input-block mb-3">
                                         <label class="col-form-label">Phone <span class="text-danger">*</span></label>
@@ -433,11 +436,11 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="input-block mb-3">
-                                        <input class="checkbox" type="checkbox" name="emoloyeestatus" 
+                                        <input class="checkbox" type="checkbox" name="employeestatus"
                                         @if ($dataemployees->employeestatus=='1')
                                             @checked(true)
                                         @endif>
-                                        <label class="col-form-label">Karyawan Aktif <span class="text-danger">*</span></label>                                                
+                                        <label class="col-form-label">Karyawan Aktif <span class="text-danger">*</span></label>
                                     </div>
                                 </div>
                             </div>
@@ -450,7 +453,7 @@
                                         <input class="form-control" name="tempatlahir" value="{{$dataemployees->tempatlahir}}" type="text">
                                     </div>
                                 </div>
-                                <div class="col-sm-6">  
+                                <div class="col-sm-6">
                                     <div class="input-block mb-3">
                                         <label class="col-form-label">Tanggal Lahir <span class="text-danger">*</span></label>
                                         <div class="cal-icon"><input class="form-control datetimepicker" name="tgllahir" value="{{$dataemployees->tgllahir}}" type="text"></div>
@@ -460,7 +463,7 @@
                                     <div class="input-block mb-3">
                                         <label class="col-form-label">Jenis Kelamin</label>
                                         <select class="select" name="gender">
-                                            <option value="Laki-laki" 
+                                            <option value="Laki-laki"
                                             @if ($dataemployees->gender=='Laki-laki')
                                                 @selected(true)
                                             @endif
@@ -491,17 +494,17 @@
                                         <input class="form-control" name="provensi" value="{{$dataemployees->provensi}}" type="text">
                                     </div>
                                 </div>
-                                
-                                <div class="col-sm-6">  
+
+                                <div class="col-sm-6">
                                     <div class="input-block mb-3">
                                         <label class="col-form-label">Tanggal Masuk <span class="text-danger">*</span></label>
                                         <div class="cal-icon"><input class="form-control datetimepicker" name="tglmasuk" type="text" value="{{$dataemployees->tglmasuk}}"></div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">  
+                                <div class="col-sm-6">
                                     <div class="input-block mb-3">
                                         <label class="col-form-label">Tanggal Keluar <span class="text-danger">*</span></label>
-                                        <div class="cal-icon"><input class="form-control datetimepicker" name="tglkeluar" type="text" 
+                                        <div class="cal-icon"><input class="form-control datetimepicker" name="tglkeluar" type="text"
                                             @if ($dataemployees->employeestatus=='1')
                                                 value="">
                                             @else
@@ -537,7 +540,7 @@
             </div>
         </div>
         <!-- /Profile Modal -->
-        
+
         <!-- Personal Info Modal -->
         <div id="personal_info_modal" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -583,9 +586,9 @@
                                         <select class="select" name="religion_id">
                                             @foreach ($datareligion as $itemreligion)
                                             @if ($itemreligion->id==$dataemployees->religion_id)
-                                                <option value="{{$itemreligion->id}}" selected>{{$itemreligion->religion}}</option>  
+                                                <option value="{{$itemreligion->id}}" selected>{{$itemreligion->religion}}</option>
                                             @else
-                                                <option value="{{$itemreligion->id}}">{{$itemreligion->religion}}</option>                                        
+                                                <option value="{{$itemreligion->id}}">{{$itemreligion->religion}}</option>
                                             @endif
                                             @endforeach
                                         </select>
@@ -597,9 +600,9 @@
                                         <select class="select" name="statusnikah">
                                             @foreach ($datastatusnikah as $itemstatusnikah)
                                                 @if ($itemstatusnikah->id==$dataemployees->statusnikah)
-                                                    <option value="{{$itemstatusnikah->id}}" selected>{{$itemstatusnikah->statusnikah}}</option>  
+                                                    <option value="{{$itemstatusnikah->id}}" selected>{{$itemstatusnikah->statusnikah}}</option>
                                                 @else
-                                                    <option value="{{$itemstatusnikah->id}}">{{$itemstatusnikah->statusnikah}}</option>															
+                                                    <option value="{{$itemstatusnikah->id}}">{{$itemstatusnikah->statusnikah}}</option>
                                                 @endif
                                             @endforeach
                                         </select>
@@ -672,7 +675,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Bank Info Modal -->   
+        <!-- /Bank Info Modal -->
 
         <!-- Other Info Modal -->
         <div id="other_modal" class="modal custom-modal fade" role="dialog">
@@ -717,7 +720,7 @@
             </div>
         </div>
         <!-- /Other Info Modal -->
-        
+
         <!-- Family Info Modal -->
         <div id="family_info_modal" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -762,7 +765,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 {{-- <div class="card">
                                     <div class="card-body">
                                         <h3 class="card-title">Education Informations <a href="javascript:void(0);" class="delete-icon"><i class="fa-regular fa-trash-can"></i></a></h3>
@@ -807,7 +810,7 @@
             </div>
         </div>
         <!-- /Family Info Modal -->
-        
+
         <!-- Emergency Contact Modal -->
         <div id="emergency_contact_modal" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -829,7 +832,7 @@
                                         <input class="form-control" name="spousename" value="{{$dataemployees->spousename}}" type="text">
                                     </div>
                                 </div>
-                                <div class="col-sm-6">  
+                                <div class="col-sm-6">
                                     <div class="input-block mb-3">
                                         <label class="col-form-label">Tanggal Menikah <span class="text-danger">*</span></label>
                                         <div class="cal-icon"><input class="form-control datetimepicker" name="spousetglnikah" value="{{$dataemployees->spousetglnikah}}" type="text"></div>
@@ -841,7 +844,7 @@
                                         <input class="form-control" name="spousetempatlahir" value="{{$dataemployees->spousetempatlahir}}"  type="text">
                                     </div>
                                 </div>
-                                <div class="col-sm-6">  
+                                <div class="col-sm-6">
                                     <div class="input-block mb-3">
                                         <label class="col-form-label">Tanggal Lahir <span class="text-danger">*</span></label>
                                         <div class="cal-icon"><input class="form-control datetimepicker" name="spousetgllahir" value="{{$dataemployees->spousetgllahir}}" type="text"></div>
@@ -881,8 +884,8 @@
             </div>
         </div>
         <!-- /Emergency Contact Modal -->
-        
-        
+
+
     </div>
     <!-- /Page Wrapper -->
 @endsection

@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('companiescode');
             $table->string('companies');
+            $table->string('alamat')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('banner')->nullable();
             $table->text('companiesnote')->default('-');
             $table->boolean('status')->default(true);
             $table->timestamps();

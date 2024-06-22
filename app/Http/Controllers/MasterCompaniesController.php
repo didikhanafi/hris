@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MasterCompanies;
 use App\Models\SettingModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MasterCompaniesController extends Controller
 {
@@ -12,10 +13,10 @@ class MasterCompaniesController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    { 
+    {
         $lastId = MasterCompanies::latest('id')->value('id');
         // $lastId = MasterCompanies::count();
-        $nextId = $lastId ? $lastId + 1 : 1; 
+        $nextId = $lastId ? $lastId + 1 : 1;
         $companycode = str_pad($nextId, 4, '0', STR_PAD_LEFT);
         $datacompanies=MasterCompanies::all();
         $settingweb = SettingModel::first();
@@ -52,16 +53,31 @@ class MasterCompaniesController extends Controller
             $status=0;
         }
 
+
+        if ($request->hasFile('logo')) {
+            $logo = $request->file('logo')->store('logo', 'public');
+        }else{
+            $logo = '';
+        }
+        if ($request->hasFile('banner')) {
+            $banner = $request->file('banner')->store('banner', 'public');
+        }else{
+            $banner = '';
+        }
+
         //create MasterCompanies
         MasterCompanies::create([
             'companiescode'     => $request->companiescode,
             'companies'   => $request->companies,
+            'alamat'   => $request->alamat,
+            'logo'   => $logo,
+            'banner'   => $banner,
             'status'   => $status
         ]);
 
         //redirect to index
         return redirect('/companies')->with(['success' => 'Data Berhasil Disimpan!']);
-    
+
     }
 
     /**
@@ -89,18 +105,37 @@ class MasterCompaniesController extends Controller
             'companiescode'=> 'required',
             'companies'=> 'required',
         ]);
-        
+
         if($request->status=='on'){
             $status=1;
         }else{
             $status=0;
         }
-        MasterCompanies::where('id',$id)->update([            
+
+
+        $companies = MasterCompanies::findOrFail($id);
+        if ($request->hasFile('logo')) {
+            if ($companies->logo) {
+                Storage::delete($companies->logo);
+            }
+            $logo = $request->file('logo')->store('logo','public');
+            $companies->logo = $logo;
+        }
+
+        if ($request->hasFile('banner')) {
+            if ($companies->banner) {
+                Storage::delete($companies->banner);
+            }
+            $banner = $request->file('banner')->store('banner','public');
+            $companies->banner = $banner;
+        }
+        $companies->update([
             'companiescode'     => $request->companiescode,
             'companies'   => $request->companies,
+            'alamat'   => $request->alamat,
             'status'   => $status
         ]);
-        
+
         return redirect('/companies')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
@@ -110,7 +145,7 @@ class MasterCompaniesController extends Controller
     public function destroy($id)
     {
         // dd($id);
-        
+
         MasterCompanies::destroy($id);
         return redirect('/companies');
     }

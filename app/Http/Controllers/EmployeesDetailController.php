@@ -29,9 +29,18 @@ class EmployeesDetailController extends Controller
      */
     public function index()
     {
+        // Query with relationships
+        $query = Employees::with('companies', 'mutations', 'branches', 'positions', 'religions', 'statusnikahs');
+        // Get the filtered data
+        $employees = $query->get();
+        $dataposition = Position::all();
+        $datacompanies = MasterCompanies::all();
         return view('employee.employeedetail',[
             'slide'=>'employees',
             'title'=>'Employee',
+            'dataposition'=>$dataposition,
+            'datacompanies'=>$datacompanies,
+            'employees'=>$employees,
         ]);
     }
 
@@ -63,7 +72,7 @@ class EmployeesDetailController extends Controller
         // dd($employees);
         $lastId = Employees::latest('id')->value('id');
         // $lastId = MasterCompanies::count();
-        $nextId = $lastId ? $lastId + 1 : 1; 
+        $nextId = $lastId ? $lastId + 1 : 1;
         $employeecode = "EMP".str_pad($nextId, 4, '0', STR_PAD_LEFT);
         $dataemployees=Employees::find($id);
         $datacompany=MasterCompanies::all();
@@ -75,7 +84,7 @@ class EmployeesDetailController extends Controller
         $databranches=Branches::all();
         $datamutation=Mutation::all();
 
-        
+
         // If the above debugging doesn't help, let's check if any field is causing the issue
         $datasuratperingatan = SuratPeringatan::where('employee_id', $id)->get();
         $dataspk = SuratPK::where('employee_id', $id)->get();
@@ -86,7 +95,7 @@ class EmployeesDetailController extends Controller
         $employeerelasi = Employees::with(['mutations', 'spk', 'suratperingatan', 'loan'])
             ->where('id', $id)
             ->first();
-        
+
         // Convert date strings to Carbon instances and add 'sort_date' field
         // Tambahkan field 'sort_date' dan 'keterangan' yang akan digunakan untuk mengurutkan data dan menampilkan deskripsi
         $mutations = $employeerelasi->mutations->map(function($item) {
@@ -112,7 +121,7 @@ class EmployeesDetailController extends Controller
             $item->keterangan = 'Rp ' . $item->jmlloan;
             return $item;
         });
-        
+
         // Combine all data and sort by 'sort_date'
         $history = collect()
             ->merge($mutations)
@@ -120,7 +129,7 @@ class EmployeesDetailController extends Controller
             ->merge($suratperingatan)
             ->merge($loan)
             ->sortBy('sort_date');
-            
+
         // Gabungkan semua data dan urutkan berdasarkan 'sort_date'
         // $history = collect()
         //     ->merge($mutations)
@@ -135,16 +144,16 @@ class EmployeesDetailController extends Controller
         //         dd($item, gettype($item->sort_date));
         //     }
         // });
-        
+
         // dd($datasuratperingatan, $dataspk, $dataloan); // Check these objects for potential issues
-        
+
         // try {
         //     $salary = Employees::findOrFail($id);
 
 
         $sallary = Sallary::where('employee_id', $id)->first();
         if($sallary){
-            
+
             $datasallary = [
                 'salary'   => $sallary->salary,
                 'salarystd'   =>$sallary->salarystd,
@@ -201,7 +210,7 @@ class EmployeesDetailController extends Controller
             ];
             $salarytemp='0';
         }
-        
+
         $settingweb = SettingModel::first();
         return view('employee.employeedetail',[
             'settingwebcom'=>$settingweb,
@@ -248,11 +257,11 @@ class EmployeesDetailController extends Controller
                 'uploademployee' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
                 'uploadktp' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             ]);
-    
-            
+
+
             $karyawan = EmployeesDetail::findOrFail($id);
-    
-            
+
+
             // dd($karyawan);
             if ($request->hasFile('uploademployee')) {
                 if ($karyawan->uploademployee) {
@@ -261,7 +270,7 @@ class EmployeesDetailController extends Controller
                 $uploademployee = $request->file('uploademployee')->store('uploademployee','public');
                 $karyawan->uploademployee = $uploademployee;
             }
-    
+
             if ($request->hasFile('uploadktp')) {
                 if ($karyawan->uploadktp) {
                     Storage::delete($karyawan->uploadktp);
@@ -269,21 +278,21 @@ class EmployeesDetailController extends Controller
                 $uploadktp = $request->file('uploadktp')->store('uploadktp','public');
                 $karyawan->uploadktp = $uploadktp;
             }
-            
+
             if($request->employeestatus=='on'){
-                $status=1;
+                $status='1';
             }else{
-                $status=0;
+                $status='0';
             }
-    
-            
+
+
             $tgllahir=date('Y-m-d',strtotime($request->tgllahir));
             $tglmasuk=date('Y-m-d',strtotime($request->tglmasuk));
             $tglkeluar=date('Y-m-d',strtotime($request->tglkeluar));
-    
-            $karyawan->update([   
+
+            $karyawan->update([
                 'company_id'   => $request->company_id,
-                'departements_id'   => $request->departments,
+                'departements_id'   => $request->departements,
                 'branches_id'   => $request->branches,
                 'employeecode'     => $request->employeecode,
                 'employee'   => $request->employee,
@@ -302,7 +311,7 @@ class EmployeesDetailController extends Controller
                 'employeestatus'   => $status,
                 'position'   => $request->position,
             ]);
-            
+
             return redirect('/employeesdetail/'.$id)->with(['success' => 'Data Berhasil Disimpan!']);
         }
 
