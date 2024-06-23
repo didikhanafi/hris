@@ -1,5 +1,5 @@
 <div class="tab-pane fade" id="emp_mutation">
-                    
+
     <div class="page-header">
         <div class="row align-items-center">
             <div class="col-auto float-end ms-auto">
@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <div class="table-responsive table-newdatatable">                     
+    <div class="table-responsive table-newdatatable">
         @if(session('success'))
             <div>
                 {{ session('success') }}
@@ -69,7 +69,7 @@
                                     <form action="{{ route('mutation.update', $mutation->id) }}" method="POST" enctype="multipart/form-data">
                                         @method('put')
                                         @csrf
-                                        <div class="row">    
+                                        <div class="row">
                                             <input type="hidden" name="employee_id" value="{{$dataemployees->id}}">
                                             <div class="col-sm-12">
                                                 <div class="input-block mb-3">
@@ -77,13 +77,13 @@
                                                     <input class="form-control" name="mutation_ke" value="{{$mutation->mutation_ke}}" type="text">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">  
+                                            <div class="col-sm-6">
                                                 <div class="input-block mb-3">
                                                     <label class="col-form-label">Tanggal Masuk <span class="text-danger">*</span></label>
                                                     <div class="cal-icon"><input class="form-control datetimepicker" name="tglawal" value="{{date('d-m-Y',strtotime($mutation->tglawal))}}" type="text"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">  
+                                            <div class="col-sm-6">
                                                 <div class="input-block mb-3">
                                                     <label class="col-form-label">Tanggal Keluar <span class="text-danger">*</span></label>
                                                     <div class="cal-icon"><input class="form-control datetimepicker" name="tglakhir" value="{{date('d-m-Y',strtotime($mutation->tglakhir))}}" type="text"></div>
@@ -96,8 +96,8 @@
                                                             <option value="{{$itemcompany->id}}"
                                                                 @if ($itemcompany->id==$mutation->companies_id)
                                                                     @selected(true)
-                                                                @endif    
-                                                            >{{$itemcompany->companies}}</option>                                        
+                                                                @endif
+                                                            >{{$itemcompany->companies}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -110,8 +110,8 @@
                                                             <option value="{{$itembranches->id}}"
                                                                 @if ($itembranches->id==$mutation->branch_id)
                                                                     @selected(true)
-                                                                @endif    
-                                                            >{{$itembranches->branches}}</option>                                        
+                                                                @endif
+                                                            >{{$itembranches->branches}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -124,8 +124,8 @@
                                                             <option value="{{$itemdepartement->id}}"
                                                                 @if ($itemdepartement->id==$mutation->departement_id)
                                                                     @selected(true)
-                                                                @endif    
-                                                            >{{$itemdepartement->departements}}</option>                                        
+                                                                @endif
+                                                            >{{$itemdepartement->departements}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -138,8 +138,8 @@
                                                             <option value="{{$itemposition->id}}"
                                                                 @if ($itemposition->id==$mutation->position_id)
                                                                     @selected(true)
-                                                                @endif    
-                                                            >{{$itemposition->position}}</option>                                        
+                                                                @endif
+                                                            >{{$itemposition->position}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -153,7 +153,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /Edit Mutation Modal -->     
+                    <!-- /Edit Mutation Modal -->
 
                     <!-- Delete Mutation Modal -->
                     <div class="modal custom-modal fade" id="delete_mutation{{$mutation->id}}" role="dialog">
@@ -167,9 +167,10 @@
                                     <div class="modal-btn delete-action">
                                         <div class="row">
                                             <div class="col-6">
-                                                <form method="POST" action="/mutation/{{ $mutation->id }}" class="d-inline">
+                                                <form method="POST" action="{{ route('employeesdetail.destroy', $mutation->id) }}" class="d-inline">
                                                     @method('delete')
                                                     @csrf
+                                                    <input type="hidden" name="employee_id" value="{{$dataemployees->id}}">
                                                     <button class="col-12 btn btn-primary continue-btn">
                                                         Delete
                                                     </button>
@@ -184,7 +185,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /Delete Mutation Modal -->                           
+                    <!-- /Delete Mutation Modal -->
                     @endif
                     </tr>
                     {{-- <td>{{$mutation->}}</td> --}}
@@ -207,12 +208,12 @@
                                 </div>
                             </div>
                         </td>
-                    </tr>                                    
+                    </tr>
                 @endforeach --}}
             </tbody>
         </table>
     </div>
-    
+
     <!-- Add Mutation Modal -->
     <div id="add_mutation" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -226,7 +227,7 @@
                 <div class="modal-body">
                     <form action="{{ route('mutation.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="row">    
+                        <div class="row">
                             <input type="hidden" name="employee_id" value="{{$dataemployees->id}}">
                             <div class="col-sm-12">
                                 <div class="input-block mb-3">
@@ -234,13 +235,13 @@
                                     <input class="form-control" name="mutation_ke" type="text">
                                 </div>
                             </div>
-                            <div class="col-sm-6">  
+                            <div class="col-sm-6">
                                 <div class="input-block mb-3">
                                     <label class="col-form-label">Tanggal Masuk <span class="text-danger">*</span></label>
                                     <div class="cal-icon"><input class="form-control datetimepicker" name="tglawal" type="text"></div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">  
+                            <div class="col-sm-6">
                                 <div class="input-block mb-3">
                                     <label class="col-form-label">Tanggal Keluar <span class="text-danger">*</span></label>
                                     <div class="cal-icon"><input class="form-control datetimepicker" name="tglakhir" type="text"></div>
@@ -250,7 +251,7 @@
                                     <label class="col-form-label">Perusahaan (PT)</label>
                                     <select class="select" name="companies_id">
                                         @foreach ($datacompany as $itemcompany)
-                                            <option value="{{$itemcompany->id}}">{{$itemcompany->companies}}</option>                                        
+                                            <option value="{{$itemcompany->id}}">{{$itemcompany->companies}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -260,7 +261,7 @@
                                     <label class="col-form-label">Cabang</label>
                                     <select class="select" name="branch_id">
                                         @foreach ($databranches as $itembranches)
-                                            <option value="{{$itembranches->id}}">{{$itembranches->branches}}</option>                                        
+                                            <option value="{{$itembranches->id}}">{{$itembranches->branches}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -270,7 +271,7 @@
                                     <label class="col-form-label">Departemen</label>
                                     <select class="select" name="departement_id">
                                         @foreach ($datadepartement as $itemdepartement)
-                                            <option value="{{$itemdepartement->id}}">{{$itemdepartement->departements}}</option>                                        
+                                            <option value="{{$itemdepartement->id}}">{{$itemdepartement->departements}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -280,7 +281,7 @@
                                     <label class="col-form-label">Jabatan</label>
                                     <select class="select" name="position_id">
                                         @foreach ($dataposition as $itemposition)
-                                            <option value="{{$itemposition->id}}">{{$itemposition->position}}</option>                                        
+                                            <option value="{{$itemposition->id}}">{{$itemposition->position}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -312,7 +313,7 @@
 
                     <form action="{{ route('mutations.import') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="row">    
+                        <div class="row">
                             <input type="hidden" name="employee_id" value="{{$dataemployees->id}}">
                             <div class="col-sm-12">
                                 <div class="input-block mb-3">

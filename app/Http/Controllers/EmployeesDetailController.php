@@ -66,9 +66,9 @@ class EmployeesDetailController extends Controller
     public function show($id)
     {
         // echo $id;
+        // dd($id);
         $employees = Employees::with('companies', 'mutations','branches','positions','religions','statusnikahs')->get();
         $mutation = Mutation::with('companies', 'branches','positions', 'departements')->get();
-        // dd($mutation);
         // dd($employees);
         $lastId = Employees::latest('id')->value('id');
         // $lastId = MasterCompanies::count();
@@ -250,6 +250,7 @@ class EmployeesDetailController extends Controller
      */
     public function update(Request $request,$id)
     {
+        // dd($request);
         if($request->tabakses=="mainprofile"){
             $request->validate([
                 'employeecode'=> 'required',
@@ -320,8 +321,13 @@ class EmployeesDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(EmployeesDetail $employeesDetail)
+    public function destroy(Request $request,$id)
     {
-        //
+        dd($id);
+        
+        $mutation = Mutation::findOrFail($id);
+
+        $mutation->delete();
+        return redirect('/employees');
     }
 }

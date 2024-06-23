@@ -20,6 +20,7 @@ use App\Http\Controllers\MasterPositionController;
 use App\Http\Controllers\MasterReligionController;
 use App\Http\Controllers\MasterSubDepartementsController;
 use App\Http\Controllers\MutationController;
+use App\Http\Controllers\MutationFileImportController;
 use App\Http\Controllers\MutationImportController;
 use App\Http\Controllers\ReportEmployeeController;
 use App\Http\Controllers\SalaryContorller;
@@ -92,6 +93,7 @@ Route::resource('/mutation', MutationController::class)->middleware('auth');
 Route::resource('/setting', SettingController::class)->middleware('auth');
 Route::resource('/settingkop', SettingKopSuratController::class)->middleware('auth');
 Route::post('import-mutations', [MutationImportController::class, 'import'])->name('mutations.import');
+Route::resource('/mutationimport', MutationFileImportController::class);
 Route::resource('/suratperingatancetak', SuratPeringatanCetakController::class)->middleware('auth');
 
 //Report Employee

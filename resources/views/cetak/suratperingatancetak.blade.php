@@ -39,8 +39,7 @@
             position: relative;
         }
         /* .address {
-            position: absolute;
-            top: 3cm;
+            position: absolute;        top: 3cm;
             left: 50%;
             transform: translateX(-50%);
             font-size: 16px;

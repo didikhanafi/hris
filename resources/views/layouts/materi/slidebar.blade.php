@@ -2,7 +2,7 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul class="sidebar-vertical">
-                <li class="menu-title"> 
+                <li class="menu-title">
                     <span>Main</span>
                 </li>
 
@@ -13,10 +13,10 @@
                         echo '<li><a href="/home"><i class="la la-dashboard"></i> <span> Dashboard</span> </a></li>';
                     }
                 @endphp
-                      
-                <li class="menu-title"> 
+
+                <li class="menu-title">
                     <span>Employees</span>
-                </li> 
+                </li>
                 <li class="submenu">
                     <a href="#"><i class="la la-object-group"></i> <span> Master </span> <span class="menu-arrow"></span></a>
                     <ul>
@@ -103,7 +103,14 @@
                                 echo '<li><a href="/employeescontexpired">Kontrak Akan Berakhir</a></li>';
                             }
                         @endphp
-                        
+                        @php
+                            if($slide=='reportemployee'){
+                                echo '<li><a href="/reportemployee" class="active">Report Employees</a></li>';
+                            }else{
+                                echo '<li><a href="/reportemployee">Report Employees</a></li>';
+                            }
+                        @endphp
+
                         {{-- <li><a href="activities.html">Notification</a></li> --}}
                         {{-- <li><a href="">Employees Report</a></li> --}}
                         {{-- <li><a href="/employeesdetail">profile</a></li> --}}
@@ -113,10 +120,10 @@
                     <a href="#"><i class="la la-users"></i> <span>Mutations</span> <span class="menu-arrow"></span></a>
                     <ul>
                         @php
-                            if($slide=='reportemployee'){
-                                echo '<li><a href="/import-mutations class="active">Import File Mutasi</a></li>';
+                            if($slide=='mutationimport'){
+                                echo '<li><a href="/mutationimport class="active">Import File Mutasi</a></li>';
                             }else{
-                                echo '<li><a href="/import-mutations">Import File Mutasi</a></li>';
+                                echo '<li><a href="/mutationimport">Import File Mutasi</a></li>';
                             }
                         @endphp
                     </ul>
@@ -135,10 +142,10 @@
                         <li><a href="">Mutatoins Reports</a></li>
                     </ul>
                 </li> --}}
-                <li class="menu-title"> 
+                <li class="menu-title">
                     <span>Administration</span>
                 </li>
-                <li> 
+                <li>
                     <a href="/setting"><i class="la la-cog"></i> <span>Settings</span></a>
                 </li>
             </ul>
