@@ -27,7 +27,7 @@
                                 }
                             @endphp
 
-                            @php
+                            {{-- @php
                                 if($slide=='formatcetak'){
                                     echo   '<li class="active">
                                                 <a href="/formatcetak"><i class="la la-photo"></i> <span>Format Cetak</span></a>
@@ -57,7 +57,7 @@
                                 echo   '<li>
                                             <a href="/formatspk"><i class="la la-photo"></i> <span>Format SPK</span></a>
                                         </li>';
-                            }
+                            } --}}
                         @endphp
 							{{-- <li>
 								<a href="change-password.html"><i class="la la-lock"></i> <span>Change Password</span></a>

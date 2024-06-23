@@ -12,7 +12,7 @@ class SettingController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {        
+    {
         $settingwebcom=SettingModel::where('id',1)->first();
         return view('setting.setting',[
             'slide'=>'setting',
@@ -65,10 +65,10 @@ class SettingController extends Controller
             'uploadfavicon' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        
+
         $settingweb = SettingModel::findOrFail($id);
 
-        
+
         // dd($request);
         if ($request->hasFile('uploadlogo')) {
             if ($settingweb->lightlogo) {
@@ -86,12 +86,12 @@ class SettingController extends Controller
             $settingweb->favicon = $uploadfavicon;
         }
         // dd($settingweb);
-        $settingweb->update([   
+        $settingweb->update([
             'webname'   => $request->webname,
-            'lightlogo'   => $uploadlogo,
-            'favicon'   => $uploadfavicon,
+            // 'lightlogo'   => $uploadlogo,
+            // 'favicon'   => $uploadfavicon,
         ]);
-        
+
         return redirect('/setting')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 

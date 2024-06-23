@@ -5,7 +5,7 @@
 	<div class="content container-fluid">
 		<div class="row">
 			<div class="col-md-8 offset-md-2">
-			
+
 				<!-- Page Header -->
 				<div class="page-header">
 					<div class="row">
@@ -15,7 +15,7 @@
 					</div>
 				</div>
 				<!-- /Page Header -->
-				
+
 
 				{{-- <img src="{{ asset('storage/' . $itememployee->uploademployee) }}" alt="User Image"> --}}
 				<form action="{{ route('setting.update', $settingwebcom->id) }}" method="POST" enctype="multipart/form-data">
@@ -34,7 +34,7 @@
 							<span class="form-text text-muted">Recommended image size is 40px x 40px</span>
 						</div>
 						<div class="col-lg-2">
-							<div class="img-thumbnail float-end"><img src="{{ asset('storage/' . $settingwebcom->lightlogo) }}" alt="Logo" width="40" height="40"></div>
+							<div class="img-thumbnail float-end"><img src="{{ asset('storage/' . $settingwebcom->lightlogo) }}" alt="Logo" height="60"></div>
 						</div>
 					</div>
 					<div class="input-block mb-3 row">

@@ -92,7 +92,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($employees as $itememployee)
+                                    @foreach ($employees as $itememployee)
                                     <tr>
                                         <td>
                                             <h2 class="table-avatar">
@@ -125,11 +125,11 @@
                                         </td>
                                     </tr>
 
-                                    @empty
+                                    {{-- @empty
                                     <tr>
                                         <td colspan="7" class="text-center">No data available</td>
-                                    </tr>
-                                    @endforelse
+                                    </tr> --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

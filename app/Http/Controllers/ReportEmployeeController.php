@@ -19,7 +19,7 @@ class ReportEmployeeController extends Controller
         $searchCompany = $request->input('search_company');
         $startDate = $request->input('start_date');
         $startDate =date('Y-m-d',strtotime($startDate));
-        $endDate = $request->input('end_date');
+        $endDate = $request->input('end_date') ?: now()->toDateString(); // Default to today if not provided
         $endDate =date('Y-m-d',strtotime($endDate));
 
         // dd($startDate);
